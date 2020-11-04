@@ -13,7 +13,7 @@ class MainController extends Controller
 {
     public function index()
     {
-//        $categories =Category::factory()->count(3)->create();
+//        $categories =Category::factory()->count(9)->create();
 //        $tags = Tag::factory()->count(3)->create();
 //        $posts = Post::factory()->count(5)->create();
         $title = 'Админка';

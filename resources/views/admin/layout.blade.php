@@ -143,7 +143,9 @@
     @include('admin.inc.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
+
     <div class="content-wrapper">
+        @include('flash')
         @yield('content')
     </div>
     <!-- /.content-wrapper -->
@@ -165,6 +167,7 @@
 <!-- ./wrapper -->
 
 <script src="{{asset('assets/admin/js/admin.js')}}"></script>
+<script src="{{asset('assets/admin/js/scripts.js')}}"></script>
 </body>
 </html>
 
