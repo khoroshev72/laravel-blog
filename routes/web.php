@@ -22,5 +22,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', [App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.index');
     Route::resource('category', App\Http\Controllers\admin\CategoryController::class)->except(['show']);
+    Route::resource('tag', \App\Http\Controllers\admin\TagController::class)->except(['show']);
 
 });

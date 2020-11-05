@@ -32,29 +32,20 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Категории
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li class="nav-item">
+                    <a href="{{route('category.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Категории</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('category.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Категории</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('category.create')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Добавить</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('tag.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Тэги</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

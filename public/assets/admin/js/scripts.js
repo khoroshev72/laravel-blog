@@ -7,9 +7,9 @@ Array.from(sidebarLinks).forEach(item => {
     const link = item.getAttribute('href')
     if (url === link){
         item.classList.add('active')
-        if (item.closest('ul').classList.contains('nav-treeview')){
-
-        }
+        // if (item.closest('ul').classList.contains('nav-treeview')){
+        //
+        // }
     }
 })
 
