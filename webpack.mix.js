@@ -13,12 +13,16 @@ const mix = require('laravel-mix');
 
 mix.styles([
     'resources/assets/admin/plugins/fontawesome-free/css/all.min.css',
+    'resources/assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css',
     'resources/assets/admin/css/adminlte.min.css',
+    'resources/assets/admin/plugins/select2/select2.min.css',
+    'resources/assets/admin/plugins/select2/select2-bootstrap4.min.css'
     ], 'public/assets/admin/css/admin.css');
 
 mix.scripts([
     'resources/assets/admin/plugins/jquery/jquery.min.js',
     'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
+    'resources/assets/admin/plugins/select2/select2.full.min.js',
     'resources/assets/admin/js/adminlte.js',
     'resources/assets/admin/js/demo.js',
 ],'public/assets/admin/js/admin.js');

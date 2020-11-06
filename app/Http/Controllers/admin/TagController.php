@@ -15,7 +15,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::query()->paginate(2);
+        $tags = Tag::query()->paginate(10);
         return view('admin.tag.index', compact('tags'));
     }
 
