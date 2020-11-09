@@ -47,7 +47,7 @@
                                 <td>{{$post->id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->category->title}}</td>
-                                <td>{{$post->tags()->pluck('title')->join(', ')}}</td>
+                                <td>{{$post->tags->pluck('title')->join(', ')}}</td>
                                 <td>{{$post->views}}</td>
                                 <td>@php echo $post->status ? '<span class="badge badge-success">Активный</span>' : '<span class="badge badge-danger">Бан</span>' @endphp</td>
                                 <td>
