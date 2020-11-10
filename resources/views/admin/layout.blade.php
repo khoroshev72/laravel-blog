@@ -167,7 +167,6 @@
 <!-- ./wrapper -->
 
 <script src="{{asset('assets/admin/js/admin.js')}}"></script>
-<script src="{{asset('assets/admin/js/scripts.js')}}"></script>
 </body>
 </html>
 

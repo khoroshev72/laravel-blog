@@ -24,7 +24,7 @@ class UserController extends Controller
         ]);
         Auth::login($user);
         session()->flash('success', 'Пользователь зарегистрирован');
-        return redirect()->route('home');
+        return redirect()->home();
     }
 
     public function loginForm()

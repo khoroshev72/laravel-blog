@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Requests\PostRequest;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,11 @@ class Post extends Model
     public function scopeActive($request)
     {
         return $request->where('status', 1);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('M d,Y');
     }
 
     public static function uploadImage(PostRequest $request, $oldImage = null)
