@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['category', 'tags'])->paginate(10);
+        $posts = Post::with(['category', 'tags'])->orderBy('id', 'desc')->paginate(10);
         return view('admin.post.index', compact('posts'));
     }
 
@@ -47,6 +48,8 @@ class PostController extends Controller
         $data['thumbnail'] = Post::uploadImage($request);
         $data = Post::toggleStatus($request, $data);
         $post = Post::create($data);
+        $post->user_id = Auth::id();
+        $post->save();
         $post->tags()->attach($request->tags);
         return redirect()->route('post.index')->with('success', 'Добавлен новый пост');
     }

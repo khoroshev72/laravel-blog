@@ -27,7 +27,7 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-comment"></i> 15 Comments</a>
+                                            <i class="far fa-comment"></i> {{count($post->comments)}} Comments</a>
                                     </li>
 
                                 </ul>

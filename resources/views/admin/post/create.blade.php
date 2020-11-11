@@ -38,13 +38,13 @@
 
                             <div class="form-group">
                                 <label for="description">Описание</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3"></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{old('description')}}</textarea>
                                 <div class="invalid-feedback">@if($errors->has('description')) {{$errors->first('description')}} @endif</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="content">Текст</label>
-                                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3"></textarea>
+                                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3">{{old('content')}}</textarea>
                                 <div class="invalid-feedback">@if($errors->has('content')) {{$errors->first('content')}} @endif</div>
                             </div>
 

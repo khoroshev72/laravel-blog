@@ -19,6 +19,7 @@ Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('h
 Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'single'])->name('post.single');
 Route::get('/tag/{slug}', [\App\Http\Controllers\MainController::class, 'tag'])->name('post.tag');
 
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', [App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.index');
     Route::resource('category', App\Http\Controllers\admin\CategoryController::class)->except(['show']);
@@ -35,5 +36,6 @@ Route::group(['middleware' => 'guest'], function(){
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('user.logout');
+    Route::post('/comment/add', [\App\Http\Controllers\PostController::class, 'add_comment'])->name('comment.add');
 });
 

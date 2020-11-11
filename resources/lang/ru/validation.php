@@ -152,6 +152,7 @@ return [
         'description' => 'Описание',
         'content' => 'Текст',
         'thumbnail' => 'Изображение',
+        'comment' => 'Комментарий',
     ],
 
 ];

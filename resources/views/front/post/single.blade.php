@@ -27,7 +27,7 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-comment"></i> 15 Comments</a>
+                                            <i class="far fa-comment"></i> {{count($post->comments)}} Comments</a>
                                     </li>
 
                                 </ul>
@@ -45,31 +45,35 @@
                         @endif
                     </div>
 
+                    @if(count($post->comments))
                     <div class="comment-top">
                         <h4>Comments</h4>
-                        <div class="media">
-                            <img src="{{asset('assets/front/img/t1.jpg')}}" alt="" class="img-fluid" />
+                        @foreach($post->comments()->with('user')->get() as $comment)
+                            <div class="media">
+                            <img src="{{asset('default.jpg')}}" width="100" alt="{{$comment->user->name}}" class="img-fluid" />
                             <div class="media-body">
-                                <h5 class="mt-0">Joseph Goh</h5>
-                                <p>Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-                                    Cras a ornare elit.</p>
+                                <h5 class="mt-0">{{$comment->user->name}} {{$comment->created_at}}</h5>
+                                <p>{{$comment->comment}}</p>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    <div class="comment-top">
-                        <h4>Leave a Comment</h4>
-                        <div class="comment-bottom">
-                            <form action="#" method="post">
-                                <input class="form-control" type="text" name="Name" placeholder="Name" required="">
-                                <input class="form-control" type="email" name="Email" placeholder="Email" required="">
+                    @endif
 
-                                <input class="form-control" type="text" name="Subject" placeholder="Subject" required="">
-
-                                <textarea class="form-control" name="Message" placeholder="Message..." required=""></textarea>
-                                <button type="submit" class="btn btn-primary submit">Submit</button>
-                            </form>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <div class="comment-top">
+                            <h4>Leave a Comment</h4>
+                            <div class="comment-bottom">
+                                <form action="{{route('comment.add')}}" method="post">
+                                    @csrf
+                                    <textarea class="form-control @error('comment') is-invalid @enderror" name="comment" placeholder="Message..." >{{old('comment')}}</textarea>
+                                    <div class="invalid-feedback">@if($errors->has('comment')) {{$errors->first('comment')}} @endif</div>
+                                    <input type="hidden" name="post_id" value="{{$post->id}}">
+                                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <!--//left-->
                 <!--right-->
