@@ -50,6 +50,11 @@ class Post extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('M d,Y');
     }
 
+    public function getImage()
+    {
+        return $this->thumbnail ? asset("/images/{$this->thumbnail}") : asset('default.jpg');
+    }
+
     public static function uploadImage(PostRequest $request, $oldImage = null)
     {
         if ($request->hasFile('thumbnail')){

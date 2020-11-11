@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
+Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'single'])->name('post.single');
+Route::get('/tag/{slug}', [\App\Http\Controllers\MainController::class, 'tag'])->name('post.tag');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', [App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.index');

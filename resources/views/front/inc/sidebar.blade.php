@@ -68,23 +68,6 @@
 
             </div>
         </div>
-        <div class="single-gd tech-btm text-left">
-            <h4>Recent Post</h4>
-            <div class="blog-grids">
-                <div class="blog-grid-left">
-                    <a href="single.html">
-                        <img src="{{asset('assets/front/img/b1.jpg')}}" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="blog-grid-right">
-
-                    <h5>
-                        <a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
-                    </h5>
-                </div>
-
-            </div>
-        </div>
 
         <div class="tech-btm">
             <h4>Recent Posts</h4>

@@ -87,11 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </header>
 <!--//header-->
 <!--/main-->
-<section class="main-content-w3layouts-agileits">
-    <div class="container">
         @yield('content')
-    </div>
-</section>
 <!--//main-->
 <!--footer-->
 <footer>
