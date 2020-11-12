@@ -15,77 +15,37 @@
         <div class="tech-btm">
             <h4>Categories</h4>
             <ul class="list-group single">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Cras justo odio
-                    <span class="badge badge-primary badge-pill">14</span>
+                @foreach($categories as $category)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{{route('post.category', $category->slug)}}">
+                            {{$category->title}}
+                        </a>
+                    <span class="badge badge-primary badge-pill">{{count($category->posts)}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Dapibus ac facilisis in
-                    <span class="badge badge-primary badge-pill">2</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Morbi leo risus
-                    <span class="badge badge-primary badge-pill">1</span>
-                </li>
+                @endforeach
             </ul>
         </div>
 
         <div class="tech-btm">
             <h4>Recent Posts</h4>
-
-            <div class="blog-grids row mb-3 text-left">
-                <div class="col-md-5 blog-grid-left">
-                    <a href="single.html">
-                        <img src="{{asset('assets/front/img/1.jpg')}}" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="col-md-7 blog-grid-right">
-
-                    <h5>
-                        <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                    </h5>
-                    <div class="sub-meta">
-										<span>
-											<i class="far fa-clock"></i> 20 Jan, 2018</span>
+            @foreach($recentPosts as $recent)
+                <div class="blog-grids row mb-3 text-left">
+                    <div class="col-md-5 blog-grid-left">
+                        <a href="{{route('post.single', $recent->slug)}}">
+                            <img src="{{$recent->getImage()}}" class="img-fluid" alt="{{$recent->title}}">
+                        </a>
+                    </div>
+                    <div class="col-md-7 blog-grid-right">
+                        <h5>
+                            <a href="{{route('post.single', $recent->slug)}}">{{$recent->title}} </a>
+                        </h5>
+                        <div class="sub-meta">
+                            <span><i class="far fa-clock"></i> {{$recent->created_at}}</span>
+                        </div>
                     </div>
                 </div>
+            @endforeach
 
-            </div>
-            <div class="blog-grids row mb-3 text-left">
-                <div class="col-md-5 blog-grid-left">
-                    <a href="single.html">
-                        <img src="{{asset('assets/front/img/5.jpg')}}" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="col-md-7 blog-grid-right">
-
-                    <h5>
-                        <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                    </h5>
-                    <div class="sub-meta">
-										<span>
-											<i class="far fa-clock"></i> 20 Jan, 2018</span>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="blog-grids row mb-3 text-left">
-                <div class="col-md-5 blog-grid-left">
-                    <a href="single.html">
-                        <img src="{{asset('assets/front/img/3.jpg')}}" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="col-md-7 blog-grid-right">
-                    <h5>
-                        <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                    </h5>
-                    <div class="sub-meta">
-										<span>
-											<i class="far fa-clock"></i> 20 Feb, 2018</span>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </aside>
