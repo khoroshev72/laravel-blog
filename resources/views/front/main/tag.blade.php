@@ -22,13 +22,12 @@
                                         </li>
                                         <li class="mx-2">
                                             <a href="#">
-                                                <i class="far fa-comment"></i> 21</a>
+                                                <i class="far fa-comment"></i> {{count($post->comments)}}</a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-eye"></i> 2000</a>
+                                        <li class="mx-2">
+                                            <a href="#" class="js-add-like" data-id="{{$post->id}}" data-csrf="{{csrf_token()}}">
+                                                <i class="far fa-thumbs-up"></i> <span class="js-insert-like">{{$post->likes}}</span> Likes</a>
                                         </li>
-
                                     </ul>
                                     <h5 class="card-title ">
                                         <a href="{{route('post.single', $post->slug)}}">{{$post->title}}</a>

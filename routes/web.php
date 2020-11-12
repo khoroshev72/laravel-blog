@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
 Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'single'])->name('post.single');
 Route::get('/tag/{slug}', [\App\Http\Controllers\MainController::class, 'tag'])->name('post.tag');
+Route::post('/post/add_like', [\App\Http\Controllers\MainController::class, 'add_like'])->name('like.add');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){

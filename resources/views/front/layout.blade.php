@@ -144,6 +144,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </a>
 
 <script src="{{asset('assets/front/js/front.js')}}"></script>
+<script>
+    $(function(){
+        $('.js-add-like').on('click', function(e){
+            e.preventDefault();
+            const id = $(this).data('id')
+            const csrf = $(this).data('csrf')
+            const $this = $(this)
+            $.ajax({
+                url: '/post/add_like',
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrf
+                },
+                data: {id:id},
+                success: function(res){
+                    if (res){
+                        const result = JSON.parse(res)
+                        if (result.res === 'ok'){
+                            const number = result.likes
+                            $this.children('.js-insert-like').text(number);
+                        }
+                    }
+                },
+                error: function () {
+                    alert('Ooops!')
+                }
+            })
+        })
+    })
+</script>
 </body>
 
 </html>
