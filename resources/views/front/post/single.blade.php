@@ -22,8 +22,8 @@
                                             <i class="far fa-calendar-alt"></i> {{$post->created_at}}</a>
                                     </li>
                                     <li class="mx-2">
-                                        <a href="#">
-                                            <i class="far fa-thumbs-up"></i> 201 Likes</a>
+                                        <a href="#" class="js-add-like" data-id="{{$post->id}}" data-csrf="{{csrf_token()}}">
+                                            <i class="far fa-thumbs-up"></i> <span class="js-insert-like">{{$post->likes}}</span> Likes</a>
                                     </li>
                                     <li>
                                         <a href="#">

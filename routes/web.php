@@ -19,6 +19,8 @@ Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('h
 Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'single'])->name('post.single');
 Route::get('/tag/{slug}', [\App\Http\Controllers\MainController::class, 'tag'])->name('post.tag');
 Route::get('/category/{slug}', [\App\Http\Controllers\MainController::class, 'category'])->name('post.category');
+Route::post('/post/add_like', [\App\Http\Controllers\MainController::class, 'add_like'])->name('like.add');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', [App\Http\Controllers\admin\MainController::class, 'index'])->name('admin.index');
