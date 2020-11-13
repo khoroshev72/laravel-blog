@@ -32,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('front.inc.sidebar', function ($view){
             $view->with('categories', Category::with('posts')->get());
             $view->with('recentPosts', Post::active()->orderBy('id', 'desc')->limit(3)->get());
+            $view->with('popularPosts', Post::active()->orderBy('likes', 'desc')->limit(3)->get());
+            $view->with('mostCommented', Post::active()->find(Post::getMostCommented()));
         });
     }
 }

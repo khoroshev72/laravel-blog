@@ -60,6 +60,18 @@ class Post extends Model
         return $this->thumbnail ? asset("/images/{$this->thumbnail}") : asset('default.jpg');
     }
 
+    public static function getMostCommented()
+    {
+        $commented = [];
+        $posts = Post::with('comments')->active()->get();
+        foreach ($posts as $post){
+            $commented[$post->id] = count($post->comments);
+        }
+        arsort($commented);
+        $commented = array_slice($commented, 0, 3, true);
+        return array_keys($commented);
+    }
+
     public static function uploadImage(PostRequest $request, $oldImage = null)
     {
         if ($request->hasFile('thumbnail')){

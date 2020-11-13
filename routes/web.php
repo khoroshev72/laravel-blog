@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +21,7 @@ Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'single
 Route::get('/tag/{slug}', [\App\Http\Controllers\MainController::class, 'tag'])->name('post.tag');
 Route::get('/category/{slug}', [\App\Http\Controllers\MainController::class, 'category'])->name('post.category');
 Route::post('/post/add_like', [\App\Http\Controllers\MainController::class, 'add_like'])->name('like.add');
+Route::get('/verify/{email}/{hash}', [\App\Http\Controllers\UserController::class, 'verify'])->name('user.verify');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){

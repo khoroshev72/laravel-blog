@@ -1,17 +1,6 @@
 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-left">
-    <div class="right-blog-info text-left">
-        <div class="tech-btm">
-            <img src="{{asset('assets/front/img/banner1.jpg')}}" class="img-fluid" alt="">
-        </div>
-        <div class="tech-btm">
-            <h4>Sign up to our newsletter</h4>
-            <p>Pellentesque dui, non felis. Maecenas male </p>
-            <form action="#" method="post">
-                <input type="email" placeholder="Email" required="">
-                <input type="submit" value="Subscribe">
-            </form>
 
-        </div>
+    <div class="right-blog-info text-left">
         <div class="tech-btm">
             <h4>Categories</h4>
             <ul class="list-group single">
@@ -25,6 +14,46 @@
                 @endforeach
             </ul>
         </div>
+
+        <div class="tech-btm">
+            <h4>Most Commented</h4>
+            @foreach($mostCommented as $post)
+                <div class="blog-grids row mb-3 text-left">
+                    <div class="col-md-5 blog-grid-left">
+                        <a href="{{route('post.single', $post->slug)}}">
+                            <img src="{{$post->getImage()}}" class="img-fluid" alt="{{$post->title}}">
+                        </a>
+                    </div>
+                    <div class="col-md-7 blog-grid-right">
+                        <h5>
+                            <a href="{{route('post.single', $post->slug)}}">{{$post->title}} </a>
+                        </h5>
+                        <div class="sub-meta">
+                            <span><i class="far fa-clock"></i> {{$post->created_at}}</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        <div class="tech-btm">
+            <h4>Popular Posts</h4>
+            @foreach($popularPosts as $post)
+                <div class="blog-grids row mb-3 text-left">
+                    <div class="col-md-5 blog-grid-left">
+                        <a href="{{route('post.single', $post->slug)}}">
+                            <img src="{{$post->getImage()}}" class="img-fluid" alt="{{$post->title}}">
+                        </a>
+                    </div>
+                    <div class="col-md-7 blog-grid-right">
+                        <h5>
+                            <a href="{{route('post.single', $post->slug)}}">{{$post->title}} </a>
+                        </h5>
+                        <div class="sub-meta">
+                            <span><i class="far fa-clock"></i> {{$post->created_at}}</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
         <div class="tech-btm">
             <h4>Recent Posts</h4>
