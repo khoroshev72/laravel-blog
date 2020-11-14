@@ -87,7 +87,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </header>
 <!--//header-->
 <!--/main-->
-        @include('flash');
+
+        <div class="container">
+            @include('flash')
+        </div>
+
         @yield('content')
 <!--//main-->
 <!--footer-->

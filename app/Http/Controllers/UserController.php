@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Mail\PasswordReset;
 use App\Mail\VerifyEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -33,6 +35,41 @@ class UserController extends Controller
         return redirect()->home();
     }
 
+    //Восстановления пароля,  форма восстановления
+    public function password_reset(Request $request)
+    {
+        if (!empty($_POST)){
+            $request->validate([
+                'email' => 'required|email|exists:users,email'
+            ]);
+            $id = DB::table('password_resets')->insertGetId(['token' => Str::random(100), 'email' => $request->email, 'created_at' => now()]);
+            $item = DB::table('password_resets')->find($id);
+            Mail::to($request->email)->send(new PasswordReset($item));
+            return redirect('/password_reset')->with('success', 'На ваш Email было отправлено письмо со ссыкой на восстановление пароля');
+        }
+        return view('front.user.password_reset');
+    }
+
+    //Восстановления пароля,  форма замены пароля
+    public function password_change($email, $token)
+    {
+       $item = DB::table('password_resets')->where('email', $email)->first();
+       if (!$item || $item->token !== $token) abort(404);
+       return view('front.user.password_change', compact('item'));
+    }
+
+    public function password_store(Request $request, $email)
+    {
+        $request->validate([
+           'password' => 'required|min:3|confirmed'
+        ]);
+        $user = User::where('email', $email)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        DB::table('password_resets')->where('email', $email)->delete();
+        return redirect()->route('login')->with('success', 'Ваш пароль был изменён');
+    }
+
     public function verify($email, $hash)
     {
         $user = User::where('email', $email)->first();
@@ -54,7 +91,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|min:3',
         ]);
         $user = User::where('email', $request->email)->first();

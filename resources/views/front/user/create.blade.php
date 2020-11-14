@@ -51,6 +51,6 @@
 
         </form>
 
-        <a href="{{route('user.login')}}" class="text-center d-inline-block mt-2">I already have a membership</a>
+        <a href="{{route('user.login')}}" class="text-center d-inline-block mt-2">У меня уже есть аккаутн</a>
     </div>
 @endsection

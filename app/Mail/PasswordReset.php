@@ -2,27 +2,25 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmail extends Mailable
+class PasswordReset extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $item;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-
-    public $user;
-
-    public function __construct(User $user)
+    public function __construct($item)
     {
-        $this->user = $user;
+        $this->item = $item;
     }
 
     /**
@@ -32,6 +30,6 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->from( ['address' => env('MAIL_FROM_ADDRESS'), 'name' => env('APP_NAME')])->subject('Подтверждение Email')->view('front.user.mail.verify');
+        return $this->from(['address' => env('MAIL_FROM_ADDRESS'), 'name' => env('MAIL_FROM_NAME')])->subject('Восстановление пароля')->view('front.user.mail.password_reset');
     }
 }

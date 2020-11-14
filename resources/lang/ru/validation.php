@@ -131,8 +131,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'exists' => 'Пользователя с таким Email не существует',
+        ],
+        'password' => [
+            'confirmed' => 'Введённые пароли не соответствуют',
         ],
     ],
 

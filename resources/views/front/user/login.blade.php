@@ -31,8 +31,7 @@
             <button type="submit" class="btn btn-primary btn-block">Login</button>
 
         </form>
-
-        <a href="{{route('user.create')}}" class="text-center d-inline-block mt-2">Register a new membership</a>
+        <a href="{{route('password_reset')}}" class="d-block mt-2">Забыли пароль?</a>
     </div>
 @endsection
 

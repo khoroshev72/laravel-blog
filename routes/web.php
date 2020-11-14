@@ -36,6 +36,9 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/register', [\App\Http\Controllers\UserController::class, 'store'])->name('user.store');
     Route::get('/login', [\App\Http\Controllers\UserController::class, 'loginForm'])->name('login');
     Route::post('/login', [\App\Http\Controllers\UserController::class, 'login'])->name('user.login');
+    Route::match(['get', 'post'],'/password_reset', [\App\Http\Controllers\UserController::class, 'password_reset'])->name('password_reset');
+    Route::get('/password_change/{email}/{token}', [\App\Http\Controllers\UserController::class, 'password_change'])->name('password_change');
+    Route::post('/password_store/{email}', [\App\Http\Controllers\UserController::class, 'password_store'])->name('password_store');
 });
 
 Route::group(['middleware' => 'auth'], function(){
